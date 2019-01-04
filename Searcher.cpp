@@ -1,5 +1,7 @@
-//
-// Created by okoprl on 1/4/19.
-//
+
 
 #include "Searcher.h"
+template<class T>
+Solution *Searcher<T>::search(Searchable<T> *searchable) {
+
+}

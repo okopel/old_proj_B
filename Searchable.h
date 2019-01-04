@@ -4,14 +4,17 @@
 
 #include "State.h"
 #include <vector>
-
+template<class T>
 class Searchable {
+private:
 
-    State *getInitialState();
+public:
 
-    State *getIGoallState();
+    State<T> *getInitialState();
 
-    vector<State *> *getAllPossibleStates(State *state);
+    State<T> *getIGoallState();
+
+    vector<State<T> *> *getAllPossibleStates(State<T> *state);
 
 };
 
