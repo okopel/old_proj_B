@@ -84,5 +84,4 @@ void MySerialServer::openServer(int portno, ClientHandler *clientHandler) {
             exit(1);
         }
     }
-    return 0;
 }

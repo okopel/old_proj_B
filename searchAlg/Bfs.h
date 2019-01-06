@@ -2,17 +2,20 @@
 #ifndef PROJB_BFS_H
 #define PROJB_BFS_H
 
-#include "Searcher.h"
-#include "State.h"
-
+#include "../Searcher.h"
+#include "../State.h"
+#include <functional>
+#include <queue>
+#include <vector>
 using namespace std;
 
 template<class T>
 class Bfs : public Searcher<T> {
 public:
     Solution *search(Searchable<T> *searchable) override {
+        priority_queue<State<T> *> open;
 
-        list<State<T> *> open;
+       // list<State<T> *> open;
         open.push_back(this->initial);
         list<State<T> *> closed;
 
@@ -34,11 +37,13 @@ public:
                 for (auto clos:closed) {
                     if (clos == state) {
                         isInClose = true;
+                        break;
                     }
                 }
                 for (auto op:open) {
                     if (op == state) {
                         isInOpen = true;
+                        break;
                     }
                 }
                 if (!isInClose && !isInOpen) {
@@ -58,16 +63,6 @@ public:
 
 
         }
-
-
-        int v = this->stateList.size();
-        //inition all the vertices as not visited
-        bool *visited = new bool[v];
-        for (int i = 0; i < v; i++) {
-            visited[i] = false;
-        }
-        //queue for the BFS
-        list<Searchable<T> *> queue;
 
     }
 };

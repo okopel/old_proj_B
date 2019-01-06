@@ -24,6 +24,10 @@ public:
     void setCost(double cost);
 
     void setCameFrom(State<T> *cameFrom);
+
+    bool operator<(const State *other) {
+        return this->cost < other->getCost();
+    }
 };
 
 

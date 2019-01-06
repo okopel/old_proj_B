@@ -5,7 +5,7 @@
 
 #include "ClientHandler.h"
 
-#define TIME_OUT=2
+#define TIME_OUT 2
 
 class Server {
 protected:
