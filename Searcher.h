@@ -16,7 +16,7 @@ protected:
     State<T> *initial;
     State<T> *goal;
 public:
-    Solution *search(Searchable<T> *searchable) = 0;
+    virtual Solution *search(Searchable<T> *searchable) = 0;
 
     int getNumberOfNodesEvaluated();
 };
