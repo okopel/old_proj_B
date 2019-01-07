@@ -2,18 +2,16 @@
 #ifndef PROJB_STRINGREVERSER_H
 #define PROJB_STRINGREVERSER_H
 
-#include <string>
+
 #include "Solver.h"
+#include <stdio.h>
+#include <string>
 
-using namespace std;
+using std::string;
 
-template<class P, class S>
-
-class StringReverser : public Solver<P, S> {
+class StringReverser : public Solver<string, string> {
 public:
-    StringReverser(P *p);
-
-    S *solve(P *p) override;
+    string solve(string p);
 };
 
 

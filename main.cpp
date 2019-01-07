@@ -5,12 +5,14 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
 
+using std::string;
+using std::cout;
+using std::endl;
 int main() {
 
     string mo = "moshe";
-    Solver<string, string> *s = new StringReverser<string, string>(&mo);
-    cout << s->solve(&mo) << endl;
+    Solver<string, string> *s = new StringReverser();
+    cout << s->solve("12345") << endl;
     return 0;
 }

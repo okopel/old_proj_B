@@ -1,18 +1,16 @@
 
 #include "StringReverser.h"
 #include <stdio.h>
+#include <string.h>
+#include <iostream>
 
 using namespace std;
 
-template<class P, class S>
-
-S *StringReverser<P, S>::solve(P *p) {
+string StringReverser::solve(string p) {
     string s = p;
-    s.reserve();
+    int n = s.length();
+    for (int i = 0; i < n / 2; i++)
+        swap(s[i], s[n - i - 1]);
     return s;
 }
 
-
-template<class P, class S>
-StringReverser<P, S>::StringReverser(P *p):Solver<P, S>(p) {
-}
