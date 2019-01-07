@@ -1,14 +1,13 @@
-
-
 #ifndef PROJB_SOLVER_H
 #define PROJB_SOLVER_H
 
-#include "Solution.h"
-#include "Problem.h"
-
+template<class P, class S>
 class Solver {
+    P *p;
 public:
-    virtual Solution *solve(Problem *p) = 0;
+    Solver(P *p) : p(p) {}
+
+    virtual S *solve(P *p) = 0;
 };
 
 

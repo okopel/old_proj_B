@@ -7,15 +7,16 @@
 #include <functional>
 #include <queue>
 #include <vector>
+
 using namespace std;
 
-template<class T>
-class Bfs : public Searcher<T> {
+template<class T, class P, class S>
+class Bfs : public Searcher<T,S> {
 public:
-    Solution *search(Searchable<T> *searchable) override {
+    S *search(Searchable<T> *searchable) override {
         priority_queue<State<T> *> open;
 
-       // list<State<T> *> open;
+        // list<State<T> *> open;
         open.push_back(this->initial);
         list<State<T> *> closed;
 

@@ -2,24 +2,23 @@
 #ifndef PROJB_CACHEMANAGER_H
 #define PROJB_CACHEMANAGER_H
 
-#include "Problem.h"
-#include "Solution.h"
+
 #include <map>
 
 using namespace std;
-
+template<class P, class S>
 class CacheManager {
-    map<Problem *, Solution *> solMap;
+    map<P *, S *> solMap;
 public:
-    bool isSolved(Problem *p) {
+    bool isSolved(P *p) {
         return solMap.count(p) != 0;
     }
 
-    Solution *getSolution(Problem *p) {
+    S *getSolution(P *p) {
         return solMap[p];
     }
 
-    virtual void saveSolution(Problem *p, Solution *s) = 0;
+    virtual void saveSolution(P *p, S *s) = 0;
 };
 
 #endif //PROJB_CACHEMANAGER_H

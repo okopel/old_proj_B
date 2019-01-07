@@ -4,19 +4,18 @@
 #define PROJB_SEARCHER_H
 
 #include <list>
-#include "Solution.h"
 #include "Searchable.h"
 #include "Isearcher.cpp"
 
 //abstract
-template<class T>
-class Searcher : public Isearcher<T> {
+template<class T,class S>
+class Searcher : public Isearcher<T,S> {
 protected:
     list<State<T> *> stateList;
     State<T> *initial;
     State<T> *goal;
 public:
-    virtual Solution *search(Searchable<T> *searchable) = 0;
+    virtual S *search(Searchable<T> *searchable) = 0;
 
     int getNumberOfNodesEvaluated();
 };

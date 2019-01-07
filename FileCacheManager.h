@@ -4,13 +4,13 @@
 #define PROJB_FILECACHEMANAGER_H
 
 #include "CacheManager.h"
-
+template<class P, class S>
 class FileCacheManager : public CacheManager {
 public:
-    void saveSolution(Problem *p, Solution *s) override;
+    void saveSolution(P *p, S *s) override;
 };
 
-void FileCacheManager::saveSolution(Problem *p, Solution *s) {//todo
+void FileCacheManager::saveSolution(P *p, S *s) {//todo
 
 }
 

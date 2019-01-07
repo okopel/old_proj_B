@@ -5,9 +5,9 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#include <string.h>
 #include <sys/socket.h>
 #include <thread>
+#include <string.h>
 
 using namespace std;
 

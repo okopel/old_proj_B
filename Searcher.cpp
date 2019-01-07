@@ -1,7 +1,7 @@
 
 
 #include "Searcher.h"
-template<class T>
-Solution *Searcher<T>::search(Searchable<T> *searchable) {
+template<class T,class S>
+S *Searcher<T,S>::search(Searchable<T> *searchable) {
 
 }

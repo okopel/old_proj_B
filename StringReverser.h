@@ -2,11 +2,18 @@
 #ifndef PROJB_STRINGREVERSER_H
 #define PROJB_STRINGREVERSER_H
 
+#include <string>
 #include "Solver.h"
 
-class StringReverser : public Solver {
+using namespace std;
+
+template<class P, class S>
+
+class StringReverser : public Solver<P, S> {
 public:
-    Solution *solve(Problem *p) override;
+    StringReverser(P *p);
+
+    S *solve(P *p) override;
 };
 
 

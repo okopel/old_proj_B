@@ -3,12 +3,12 @@
 #define PROJB_ISEARCHER_H
 
 //interface
-template<class T>
+template<class T,class S>
 class Isearcher {
 protected:
 
 public:
-    Solution *search(Searchable<T> *searchable) = 0;
+    S *search(Searchable<T> *searchable) = 0;
 
     int getNumberOfNodesEvaluated() = 0;
 
