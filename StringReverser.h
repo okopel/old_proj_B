@@ -6,6 +6,14 @@
 #include "Solver.h"
 #include <stdio.h>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <thread>
+#include <string.h>
 
 using std::string;
 

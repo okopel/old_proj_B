@@ -7,17 +7,20 @@
 
 #define TIME_OUT 2
 
-class Server {
-protected:
-    int socketId;
-    bool shouldStop;
+namespace server_side {
 
-public:
-    virtual int open(int port, ClientHandler *clientHandler) = 0;
 
-    virtual void stop() = 0;
+    class Server {
+    protected:
+        int socketId;
+        bool shouldStop;
 
-    //todo func to get info
-};
+    public:
+        virtual int open(int port, ClientHandler *clientHandler) = 0;
 
+        virtual void stop() = 0;
+
+        //todo func to get info
+    };
+}
 #endif //PROJB_SERVER_H

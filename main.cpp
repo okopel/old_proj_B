@@ -9,10 +9,17 @@
 using std::string;
 using std::cout;
 using std::endl;
-int main() {
+namespace boot {
+    int main() {
+        string mo = "moshe";
+        Solver<string, string> *s = new StringReverser();
+        cout << s->solve("12345") << endl;
+        return 0;
+    }
 
-    string mo = "moshe";
-    Solver<string, string> *s = new StringReverser();
-    cout << s->solve("12345") << endl;
+};
+
+int main(int argc, char **argv) {
+    boot::main();
     return 0;
-}
+};
