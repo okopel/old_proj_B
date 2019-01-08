@@ -12,13 +12,19 @@ using std::cout;
 using std::endl;
 namespace boot {
     int main() {
-        State<int> **ma = new State<int> *;
-        for (int i = 0; i < 5; i++) {
-            ma[i] = new State<int>(2);
+
+        int x = 5;
+        State<int> ***ma = new State<int> **[x];
+        for (int i = 0; i < x; i++) {
+            ma[i] = new State<int> *[5];
+            for (int j = 0; j < x; j++) {
+                ma[i][j] = new State<int>(i*8 * j*0.89 + 5 - i/2 * i);
+            }
         }
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; ++j) {
-                cout << ma[i][j] << " ";
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < x; ++j) {
+                cout << *ma[i][j] << "\t";
             }
             cout << endl;
         }

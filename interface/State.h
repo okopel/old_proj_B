@@ -14,6 +14,7 @@ using std::ostream;
 using std::iostream;
 using std::vector;
 using std::list;
+using std::endl;
 
 template<class T>
 class State {
@@ -53,14 +54,15 @@ public:
     }
 
 
-    friend ostream &operator<<<>(ostream &os, const singleList &L);
-
+    friend ostream &operator<<(ostream &out, State<T> t) {
+        return print(out, t);
+    }
 };
 
 template<class T>
-ostream &operator<<(ostream &os, const State<T> &s) {
-    os << s.state;
-    return os;
+ostream &print(ostream &out, const State<T> &t) {
+    return out << t.getState();
+
 }
 
 
