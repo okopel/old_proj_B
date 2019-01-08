@@ -5,7 +5,7 @@
 
 #include <list>
 #include "Searchable.h"
-#include "Isearcher.cpp"
+#include "Isearcher.h"
 
 //abstract
 template<class T,class S>

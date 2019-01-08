@@ -3,7 +3,7 @@
 #define PROJB_STRINGREVERSER_H
 
 
-#include "Solver.h"
+#include "../interface/Solver.h"
 #include <stdio.h>
 #include <string>
 #include <stdio.h>

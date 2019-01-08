@@ -2,8 +2,8 @@
 #ifndef PROJB_BFS_H
 #define PROJB_BFS_H
 
-#include "../Searcher.h"
-#include "../State.h"
+#include "../interface/Searcher.h"
+#include "../interface/State.h"
 #include <functional>
 #include <queue>
 #include <vector>

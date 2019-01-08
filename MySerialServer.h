@@ -11,7 +11,7 @@
 #include <sys/socket.h>
 #include <thread>
 #include <string.h>
-#include "Server.h"
+#include "interface/Server.h"
 
 class MySerialServer : public server_side::Server {
 private:
