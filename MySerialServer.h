@@ -11,14 +11,17 @@
 #include <sys/socket.h>
 #include <thread>
 #include <string.h>
+#include <string>
 #include "interface/Server.h"
+
+using std::string;
 
 template<class P, class S>
 class MySerialServer : public server_side::Server<P, S> {
 private:
     bool shouldStop;
 public:
-    static void openServer(int portno, ClientHandler<P *, S *> *clientHandler, bool shouldStop) {
+    static void openServer(int portno, ClientHandler<P, S> *clientHandler, bool shouldStop) {
 
         int sockfd, newsockfd, clilen, n;
         int hz = 5;//todo hz
@@ -82,7 +85,7 @@ public:
         }
     }
 
-    int open(int port, ClientHandler<P *, S *> *clientHandler) override;
+    int open(int port, ClientHandler<P, S> *clientHandler) override;
 
     void stop() override;
 };

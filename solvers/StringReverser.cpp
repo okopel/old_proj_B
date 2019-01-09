@@ -1,10 +1,11 @@
 
 #include "StringReverser.h"
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <iostream>
 
-using namespace std;
+using std::string;
+using std::swap;
 
 string StringReverser::solve(string p) {
     string s = p;

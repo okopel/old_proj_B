@@ -6,6 +6,11 @@
 #include "interface/CacheManager.h"
 #include "parser/Parser.h"
 
+#include <string>
+#include <stdio.h>
+
+using std::string;
+
 template<class P, class S>
 class MyTestClientHandler : public ClientHandler<P, S> {
 public:

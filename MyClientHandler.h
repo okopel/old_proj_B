@@ -4,6 +4,8 @@
 #include "./interface/ClientHandler.h"
 #include <vector>
 #include "searchable/Matrix.h"
+#include <string>
+#include <stdio.h>
 
 using std::string;
 
@@ -15,6 +17,8 @@ class MyClientHandler : public ClientHandler<P, S> {
 
 public:
     void handleClient(istream istream, ostream ostream) override;
+
+    MyClientHandler(Solver<P, S> *solver, CacheManager<P, S> *cacheManager);
 
 };
 

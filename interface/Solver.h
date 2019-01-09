@@ -2,6 +2,9 @@
 #define PROJB_SOLVER_H
 
 #include <stdio.h>
+#include <string>
+
+using std::string;
 
 template<class P, class S>
 class Solver {
@@ -9,7 +12,7 @@ class Solver {
 public:
     Solver() {}
 
-    virtual S solve(P p) = 0;
+    virtual S *solve(P *p) = 0;
 };
 
 

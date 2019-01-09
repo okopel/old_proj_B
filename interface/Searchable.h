@@ -4,6 +4,10 @@
 
 #include "State.h"
 #include <vector>
+#include <string>
+#include <stdio.h>
+
+using std::string;
 
 template<class T>
 class Searchable {

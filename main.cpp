@@ -9,42 +9,22 @@
 #include "./searchable/Matrix.h"
 #include "./interface/ClientHandler.h"
 #include "MyClientHandler.h"
+#include "searchAlg/Bestfs.h"
+#include "./cashManagers/FileCacheManager.h"
+
 using std::string;
 using std::cout;
 using std::endl;
 
 namespace boot {
     int main() {
-        ClientHandler<Searchable<int*>*, string>clientHandler;
-        clientHandler=new MyClientHandler<Searchable<int>, string>();
-       ofstream ofstream1;
-       ofstream1.open("mat.txt");
-      //  clientHandler->handleClient()
+        using std::string;
+        Solver<Matrix<int> *, list<State<int> *> *> *solver = new Bestfs<int>();
+        CacheManager<Matrix<int> *, string> *cacheManager = new FileCacheManager<Matrix<int> *, string>();
+        //ClientHandler<Matrix<int> *, string> *clientHandler = new MyClientHandler<Matrix<int> *, string> (solver,
+        //                                                                                                cacheManager);
+        ClientHandler<Matrix<int> *, string> clientHandler(solver, cacheManager);
 
-
-        /* int x = 5;
-         State<int> ***ma = new State<int> **[x];
-         for (int i = 0; i < x; i++) {
-             ma[i] = new State<int> *[5];
-             for (int j = 0; j < x; j++) {
-                 ma[i][j] = new State<int>(i*8 * j*0.89 + 5 - i/2 * i);
-             }
-         }
-
-
-         for (int i = 0; i < x; i++) {
-             for (int j = 0; j < x; ++j) {
-                 cout << *ma[i][j] << "\t";
-             }
-             cout << endl;
-         }
-
- */
-        // Searchable<int> *searchable = new Matrix<int>(ma, 5, 5);
-
-        /*  string mo = "moshe";
-          Solver<string, string> *s = new StringReverser();
-          cout << s->solve("12345") << endl;*/
         return 0;
     }
 

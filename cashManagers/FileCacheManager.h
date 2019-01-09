@@ -4,6 +4,10 @@
 #define PROJB_FILECACHEMANAGER_H
 
 #include "../interface/CacheManager.h"
+#include <stdio.h>
+#include <string>
+
+using std::string;
 
 template<class P, class S>
 class FileCacheManager : public CacheManager<P, S> {

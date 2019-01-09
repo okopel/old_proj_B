@@ -4,8 +4,12 @@
 
 
 #include <map>
+#include <string>
+#include <stdio.h>
 
-using namespace std;
+using std::string;
+using std::map;
+
 template<class P, class S>
 class CacheManager {
     map<P *, S *> solMap;

@@ -6,6 +6,7 @@
 #include "interface/State.h"
 #include "searchable/Matrix.h"
 #include "interface/Isearcher.h"
+#include <stdio.h>
 
 using std::string;
 
@@ -67,3 +68,4 @@ Matrix<int> *MyClientHandler<P, S>::getMatrix(istream istream) {
     }
     return new Matrix<int>(matrix, size, size, initionX, initionY, goalX, goalY);
 }
+

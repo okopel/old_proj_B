@@ -7,21 +7,25 @@
 #include <functional>
 #include <queue>
 #include <vector>
+#include <string>
+#include <stdio.h>
+#include <list>
 
-using namespace std;
+using std::string;
+using std::priority_queue;
+using std::list;
 
-template<class T, class P, class S>
-class Bestfs : public Searcher<T, S> {
+template<class T>
+class Bestfs : public Searcher<T> {
 public:
-    S *search(Searchable<T> *searchable) override {
+    virtual State<T> *search(Searchable<T> *searchable) override {
         priority_queue<State<T> *> open;
-
         // list<State<T> *> open;
-        open.push_back(this->initial);
+        open.push(this->initial);
         list<State<T> *> closed;
-
         while (!open.empty()) {
-            State<T> *s = open.pop_back();
+            State<T> *s = open.top();
+            open.pop();
             closed.push_back(s);
             if (s->equal(this->goal)) {
 //                list<State<T> *> path;

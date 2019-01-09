@@ -4,7 +4,10 @@
 #define PROJB_SERVER_H
 
 #include "ClientHandler.h"
+#include <string>
+#include <stdio.h>
 
+using std::string;
 #define TIME_OUT 2
 
 namespace server_side {
@@ -16,7 +19,7 @@ namespace server_side {
         bool shouldStop;
 
     public:
-        virtual int open(int port, ClientHandler<P *, S *> *clientHandler) = 0;
+        virtual int open(int port, ClientHandler<P, S> *clientHandler) = 0;
 
         virtual void stop() = 0;
 

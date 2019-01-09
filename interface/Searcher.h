@@ -6,18 +6,28 @@
 #include <list>
 #include "Searchable.h"
 #include "Isearcher.h"
+#include <stdio.h>
+#include <string>
+
+using std::string;
 
 //abstract
-template<class T,class S>
-class Searcher : public Isearcher<T,S> {
+template<class T>
+class Searcher : public Isearcher<T> {
 protected:
     list<State<T> *> stateList;
     State<T> *initial;
     State<T> *goal;
 public:
-    virtual S *search(Searchable<T> *searchable) = 0;
+    Searcher() : Isearcher<T>() {
 
-    int getNumberOfNodesEvaluated();
+    }
+
+    virtual State<T> *search(Searchable<T> *searchable) = 0;
+
+    virtual int getNumberOfNodesEvaluated() {
+        return 0;
+    }
 };
 
 

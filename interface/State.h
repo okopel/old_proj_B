@@ -8,7 +8,9 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <string>
 
+using std::string;
 using std::cout;
 using std::ostream;
 using std::iostream;
