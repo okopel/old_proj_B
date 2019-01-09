@@ -9,13 +9,13 @@
 #include "Solver.h"
 #include "CacheManager.h"
 
-using namespace std;
+using std::string;
 
 template<class P, class S>
 class ClientHandler {
 protected:
     Solver<P *, S *> *solver;
-    CacheManager<P *, S *> cacheManager;
+    CacheManager<P* , S *> cacheManager;
 
 public:
     virtual void handleClient(istream inputStream, ostream ostream);
