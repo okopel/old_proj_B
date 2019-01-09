@@ -11,7 +11,7 @@
 using namespace std;
 
 template<class T, class P, class S>
-class Bfs : public Searcher<T,S> {
+class Bestfs : public Searcher<T, S> {
 public:
     S *search(Searchable<T> *searchable) override {
         priority_queue<State<T> *> open;
@@ -24,25 +24,25 @@ public:
             State<T> *s = open.pop_back();
             closed.push_back(s);
             if (s->equal(this->goal)) {
-                list<State<T> *> path;
-                while (!s->equal(this->initial)) {
-                    path.push_back(s);
-                    s = s->getCameFrom();
-                }
+//                list<State<T> *> path;
+//                while (!s->equal(this->initial)) {
+//                    path.push_back(s);
+//                    s = s->getCameFrom();
+//                }
                 return s;
             }
-            vector<State<T> *> poss = searchable->getAllPossibleStates(s);
-            for (State<T> *state:poss) {
+            vector<State<T> *> possibleSates = searchable->getAllPossibleStates(s);
+            for (State<T> *state:possibleSates) {
                 bool isInOpen = false;
                 bool isInClose = false;
-                for (auto clos:closed) {
-                    if (clos == state) {
+                for (auto &vertex:closed) {
+                    if (vertex == state) {
                         isInClose = true;
                         break;
                     }
                 }
-                for (auto op:open) {
-                    if (op == state) {
+                for (auto &vertex:open) {
+                    if (vertex == state) {
                         isInOpen = true;
                         break;
                     }

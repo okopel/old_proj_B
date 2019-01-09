@@ -12,7 +12,6 @@ using std::cout;
 using std::endl;
 namespace boot {
     int main() {
-
         int x = 5;
         State<int> ***ma = new State<int> **[x];
         for (int i = 0; i < x; i++) {

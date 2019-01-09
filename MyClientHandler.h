@@ -1,14 +1,17 @@
-
-
 #ifndef PROJB_MYCLIENTHANDLER_H
 #define PROJB_MYCLIENTHANDLER_H
 
 #include "./interface/ClientHandler.h"
+#include <vector>
 
-class MyClientHandler : public ClientHandler {
+using std::string;
+
+template<class P, class S>
+class MyClientHandler : public ClientHandler<P, S> {
+    vector<int> parserLine(string s);
 
 public:
-    ostream handleClient(istream istream) override;
+    void handleClient(istream istream, ostream ostream) override;
 
 };
 

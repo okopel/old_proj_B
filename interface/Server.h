@@ -9,14 +9,14 @@
 
 namespace server_side {
 
-
+    template<class P, class S>
     class Server {
     protected:
         int socketId;
         bool shouldStop;
 
     public:
-        virtual int open(int port, ClientHandler *clientHandler) = 0;
+        virtual int open(int port, ClientHandler<P *, S *> *clientHandler) = 0;
 
         virtual void stop() = 0;
 

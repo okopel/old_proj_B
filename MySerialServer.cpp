@@ -11,15 +11,16 @@
 
 using std::thread;
 
-int MySerialServer::open(int portno, ClientHandler *clientHandler) {
+template<class P, class S>
+int MySerialServer<P, S>::open(int portno, ClientHandler<P *, S *> *clientHandler) {
     this->shouldStop = false;
     //todo thread
     thread *t = new thread(&MySerialServer::openServer, portno, ref(clientHandler), ref(shouldStop));
     return 8;
 }
 
-
-void MySerialServer::stop() {
+template<class P, class S>
+void MySerialServer<P, S>::stop() {
     this->shouldStop = true;
 }
 

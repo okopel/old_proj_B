@@ -7,7 +7,7 @@
 
 template<class T>
 class Searchable {
-private:
+protected:
     State<T> *initState;
     State<T> *goalState;
 public:

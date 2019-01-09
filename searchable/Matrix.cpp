@@ -33,7 +33,7 @@ vector<State<T> *> *Matrix<T>::getAllPossibleStates(int x, int y) {
     if (x < 0 || y < 0 || x > this->width || y > this->height) {
         return nullptr;
     }
-    vector <State<T>> posStates;
+    vector<State<T>> posStates;
     if (x < this->width) {//rohav
         posStates.push_back(this->getStateByIndex(x + 1, y));
     }
@@ -55,10 +55,12 @@ State<T> *Matrix<T>::getInitialState() {
 }
 
 template<class T>
-Matrix<T>::Matrix(State<T> **s, int height, int width) {
+Matrix<T>::Matrix(State<T> ***s, int height, int width, int initX, int initY, int goalX, int goalY) {
     this->matrix = s;
     this->height = height;
     this->width = width;
+    this->initState = this->getStateByIndex(initX, initY);
+    this->goalState = this->getStateByIndex(goalX, goalY);
 
 
 }

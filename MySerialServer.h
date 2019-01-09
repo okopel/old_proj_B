@@ -13,11 +13,12 @@
 #include <string.h>
 #include "interface/Server.h"
 
-class MySerialServer : public server_side::Server {
+template<class P, class S>
+class MySerialServer : public server_side::Server<P, S> {
 private:
     bool shouldStop;
 public:
-    static void openServer(int portno, ClientHandler *clientHandler, bool shouldStop) {
+    static void openServer(int portno, ClientHandler<P *, S *> *clientHandler, bool shouldStop) {
 
         int sockfd, newsockfd, clilen, n;
         int hz = 5;//todo hz
@@ -81,7 +82,7 @@ public:
         }
     }
 
-    int open(int port, ClientHandler *clientHandler) override;
+    int open(int port, ClientHandler<P *, S *> *clientHandler) override;
 
     void stop() override;
 };

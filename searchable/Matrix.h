@@ -13,12 +13,13 @@ class Matrix : public Searchable<T> {
     State<T> **matrix;
     int height;
     int width;
+
     vector<State<T> *> *getAllPossibleStates(int x, int y);
 
     State<T> *getStateByIndex(int x, int y);
 
 public:
-    Matrix(State<T> **s, int height, int width);
+    Matrix(State<T> ***s, int height, int width, int initX, int initY, int goalX, int goalY);
 
     State<T> *getInitialState() override;
 

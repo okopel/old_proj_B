@@ -6,13 +6,19 @@
 #include <iostream>
 #include <istream>
 #include <ostream>
+#include "Solver.h"
+#include "CacheManager.h"
 
 using namespace std;
 
+template<class P, class S>
 class ClientHandler {
+protected:
+    Solver<P *, S *> *solver;
+    CacheManager<P *, S *> cacheManager;
 
 public:
-    virtual ostream handleClient(istream inputStream);
+    virtual void handleClient(istream inputStream, ostream ostream);
 
 //    ostream &operator<<(ostream &os) {
 //        return os << this->toString();
