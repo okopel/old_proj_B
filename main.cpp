@@ -13,19 +13,22 @@
 #include "searchAlg/Bestfs.h"
 #include <vector>
 #include "./cashManagers/FileCacheManager.h"
+#include "MyStringReverseClient.h"
 
 using std::string;
 using std::cout;
 using std::endl;
 using std::vector;
+using std::istream;
+using std::ofstream;
+using std::ostream;
 namespace boot {
     int main() {
 
         auto *stringReve = new StringReverser();
         auto *cash = new FileCacheManager();
-        cout<<stringReve->solve("122345");
-        //auto *myCli = new MyClientHandler<string, string>(stringReve, cash);
-
+        auto *myCli = new MyStringClient(stringReve, cash);
+        myCli->x();
 /*
         using std::string;
         auto *bestfs = new Bestfs<int>();
