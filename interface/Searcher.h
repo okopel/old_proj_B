@@ -25,6 +25,16 @@ public:
 
     virtual State<T> *search(Searchable<T> *searchable) = 0;
 
+    virtual list<State<T> *> *solve(Searchable<T> *p) override {
+        State<T> *goal = this->search(p);
+        list<State<T> *> path;
+        while (goal != nullptr) {
+            path.push_back(goal);
+            goal = goal->getCameFrom();
+        }
+        return path;
+    }
+
     virtual int getNumberOfNodesEvaluated() {
         return 0;
     }

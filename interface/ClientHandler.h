@@ -18,17 +18,14 @@ template<class P, class S>
 class ClientHandler {
 protected:
     Solver<P, S> *solver;
-    CacheManager<P, S> *cacheManager;
+    CacheManager *cacheManager;
 
 public:
-    ClientHandler(Solver<P, S> *solver, CacheManager<P, S> *cacheManager) : solver(solver),
-                                                                            cacheManager(cacheManager) {}
+    ClientHandler(Solver<P, S> *solver, CacheManager *cacheManager) : solver(solver),
+                                                                      cacheManager(cacheManager) {}
 
     virtual void handleClient(istream inputStream, ostream ostream);
 
-//    ostream &operator<<(ostream &os) {
-//        return os << this->toString();
-//    }
 };
 
 #endif //PROJB_CLIENTHANDLER_H

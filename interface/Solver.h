@@ -8,7 +8,6 @@ using std::string;
 
 template<class P, class S>
 class Solver {
-//    P *p;
 public:
     Solver() {}
 

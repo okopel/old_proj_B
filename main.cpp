@@ -19,11 +19,10 @@ using std::endl;
 namespace boot {
     int main() {
         using std::string;
-        Solver<Matrix<int> *, list<State<int> *> *> *solver = new Bestfs<int>();
-        CacheManager<Matrix<int> *, string> *cacheManager = new FileCacheManager<Matrix<int> *, string>();
-        //ClientHandler<Matrix<int> *, string> *clientHandler = new MyClientHandler<Matrix<int> *, string> (solver,
-        //                                                                                                cacheManager);
-        ClientHandler<Matrix<int> *, string> clientHandler(solver, cacheManager);
+        auto *bestfs = new Bestfs<int>();
+        auto *cacheManager = new FileCacheManager();
+        auto *myClientHandler = new MyClientHandler<Matrix<int> *, list<State<int> *> *>(bestfs, cacheManager);
+//        MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager);
 
         return 0;
     }

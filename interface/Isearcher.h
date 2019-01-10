@@ -15,15 +15,7 @@ protected:
 
 public:
 
-    list<State<T> *> *solve(Searchable<T> *p) override {
-        State<T> *goal = this->search(p);
-        list<State<T> *> path;
-        while (goal != nullptr) {
-            path.push_back(goal);
-            goal = goal->getCameFrom();
-        }
-        return path;
-    }
+    virtual list<State<T> *> *solve(Searchable<T> *p) = 0;
 
     virtual State<T> *search(Searchable<T> *searchable) = 0;
 

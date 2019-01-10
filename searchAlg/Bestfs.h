@@ -1,4 +1,3 @@
-
 #ifndef PROJB_BFS_H
 #define PROJB_BFS_H
 
@@ -18,6 +17,11 @@ using std::list;
 template<class T>
 class Bestfs : public Searcher<T> {
 public:
+    Bestfs() : Searcher<T>() {
+
+    };
+
+
     virtual State<T> *search(Searchable<T> *searchable) override {
         priority_queue<State<T> *> open;
         // list<State<T> *> open;
@@ -28,11 +32,6 @@ public:
             open.pop();
             closed.push_back(s);
             if (s->equal(this->goal)) {
-//                list<State<T> *> path;
-//                while (!s->equal(this->initial)) {
-//                    path.push_back(s);
-//                    s = s->getCameFrom();
-//                }
                 return s;
             }
             vector<State<T> *> possibleSates = searchable->getAllPossibleStates(s);

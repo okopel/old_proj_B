@@ -10,19 +10,19 @@
 using std::string;
 using std::map;
 
-template<class P, class S>
+
 class CacheManager {
-    map<P *, S *> solMap;
+    map<string, string> solMap;
 public:
-    bool isSolved(P *p) {
+    virtual bool isSolved(string p) {
         return solMap.count(p) != 0;
     }
 
-    S *getSolution(P *p) {
+    virtual string getSolution(string p) {
         return solMap[p];
     }
 
-    virtual void saveSolution(P *p, S *s) = 0;
+    virtual void saveSolution(string p, string s) = 0;
 };
 
 #endif //PROJB_CACHEMANAGER_H

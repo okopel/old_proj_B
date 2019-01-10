@@ -9,10 +9,17 @@
 
 using std::string;
 
-template<class P, class S>
-class FileCacheManager : public CacheManager<P, S> {
+class FileCacheManager : public CacheManager {
 public:
-    void saveSolution(P *p, S *s) override {
+    bool isSolved(string p) override {
+        return CacheManager::isSolved(p);
+    }
+
+    string getSolution(string p) override {
+        return CacheManager::getSolution(p);
+    }
+
+    void saveSolution(string p, string s) override {
         //todo
     }
 };
