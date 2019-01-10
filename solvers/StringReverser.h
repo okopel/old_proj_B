@@ -20,6 +20,8 @@ using std::string;
 class StringReverser : public Solver<string, string> {
 public:
     string solve(string p);
+
+    string *solve(string *p) override;
 };
 
 

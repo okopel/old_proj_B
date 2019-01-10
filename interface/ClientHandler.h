@@ -24,7 +24,7 @@ public:
     ClientHandler(Solver<P, S> *solver, CacheManager *cacheManager) : solver(solver),
                                                                       cacheManager(cacheManager) {}
 
-    virtual void handleClient(istream inputStream, ostream ostream);
+    virtual void handleClient(istream inputStream, ostream ostream) = 0;
 
 };
 

@@ -6,12 +6,14 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include <vector>
+#include <list>
 
 using std::string;
 
 template<class T>
 class Matrix : public Searchable<T> {
-    State<T> **matrix;
+    State<T> ***matrix;
     int height;
     int width;
 
@@ -63,18 +65,18 @@ vector<State<T> *> *Matrix<T>::getAllPossibleStates(int x, int y) {
     if (x < 0 || y < 0 || x > this->width || y > this->height) {
         return nullptr;
     }
-    vector<State<T>> posStates;
+    vector<State<T> *> *posStates = new vector<State<T> *>();
     if (x < this->width) {//rohav
-        posStates.push_back(this->getStateByIndex(x + 1, y));
+        posStates->push_back(this->getStateByIndex(x + 1, y));
     }
     if (x > 0) {
-        posStates.push_back(this->getStateByIndex(x - 1, y));
+        posStates->push_back(this->getStateByIndex(x - 1, y));
     }
     if (y < this->height) {
-        posStates.push_back(this->getStateByIndex(x, y + 1));
+        posStates->push_back(this->getStateByIndex(x, y + 1));
     }
     if (y > 0) {
-        posStates.push_back(this->getStateByIndex(x, y - 1));
+        posStates->push_back(this->getStateByIndex(x, y - 1));
     }
     return posStates;
 }
@@ -93,6 +95,12 @@ Matrix<T>::Matrix(State<T> ***s, int height, int width, int initX, int initY, in
     this->goalState = this->getStateByIndex(goalX, goalY);
 
 
+}
+
+template<class T>
+State<T> *Matrix<T>::getStateByIndex(int x, int y) {
+//todo
+    return nullptr;
 }
 
 #endif //PROJB_MATRIX_H

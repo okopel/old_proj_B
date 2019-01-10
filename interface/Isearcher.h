@@ -10,7 +10,7 @@ using std::string;
 
 //interface
 template<class T>
-class Isearcher : public Solver<Searchable<T>, list<State<T> *>> {
+class Isearcher : public Solver<Searchable<T>, list<State<T> *> > {
 protected:
 
 public:

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface/Solver.h"
+#include "interface/CacheManager.h"
 #include "solvers/StringReverser.h"
 #include <string>
 #include <iostream>
@@ -10,19 +11,44 @@
 #include "./interface/ClientHandler.h"
 #include "MyClientHandler.h"
 #include "searchAlg/Bestfs.h"
+#include <vector>
 #include "./cashManagers/FileCacheManager.h"
 
 using std::string;
 using std::cout;
 using std::endl;
-
+using std::vector;
 namespace boot {
     int main() {
+
+        auto *stringReve = new StringReverser();
+        auto *cash = new FileCacheManager();
+        cout<<stringReve->solve("122345");
+        //auto *myCli = new MyClientHandler<string, string>(stringReve, cash);
+
+/*
         using std::string;
         auto *bestfs = new Bestfs<int>();
         auto *cacheManager = new FileCacheManager();
-        auto *myClientHandler = new MyClientHandler<Matrix<int> *, list<State<int> *> *>(bestfs, cacheManager);
-//        MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager);
+        auto *myClientHandler = new MyClientHandler<Matrix<int> *, vector<State<int> *> >(bestfs, cacheManager);
+
+        MyClientHandler<Matrix<int>, vector<State<int> > > b(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, vector<State<int> > > b2(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, vector<State<int> *> > b3(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, vector<State<int> *> *> b4(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, vector<State<int> *> > b5(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, vector<State<int> *> *> b6(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, vector<State<int> > *> b7(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, vector<State<int> > *> b8(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, list<State<int> > > c(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, list<State<int> > > c2(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, list<State<int> *> > c3(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, list<State<int> *> *> c4(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, list<State<int> *> > c5(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, list<State<int> *> *> c6(bestfs, cacheManager);
+        MyClientHandler<Matrix<int>, list<State<int> > *> c7(bestfs, cacheManager);
+        MyClientHandler<Matrix<int> *, list<State<int> > *> c8(bestfs, cacheManager);
+*/
 
         return 0;
     }

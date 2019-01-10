@@ -14,15 +14,13 @@ class MyClientHandler : public ClientHandler<P, S> {
 
     vector<int> parserLine(string s);
 
-    Matrix<int> *getMatrix(istream istream);
+    Matrix<int> *getMatrix(istream &istream);
 
 public:
+    MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager);
+
     void handleClient(istream istream, ostream ostream) override;
 
-    MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager) : ClientHandler<P, S>(solver, cacheManager) {
-        this->solver = solver;
-        this->cacheManager = cacheManager;
-    }
 
 };
 
@@ -35,10 +33,11 @@ void MyClientHandler<P, S>::handleClient(istream istream, ostream ostream) {
     int numOfGraphs = stoi(s);
     //load all graphs from inputStream
     for (int graphIndex = 0; graphIndex < numOfGraphs; graphIndex++) {
-        matrixes.push_back(this->getMatrix(istream));
+        Matrix<int> *m = this->getMatrix(istream);//todo istream!
+        matrixes.push_back(m);
     }
-    for (Searchable<int> *tmpMatrix:matrixes) {
-        this->solver->solve(tmpMatrix);
+    for (Searchable<int>* tmpMatrix:matrixes) {
+        auto ans = this->solver->solve(*tmpMatrix);//todo save the answer
     }
 }
 
@@ -59,7 +58,7 @@ vector<int> MyClientHandler<P, S>::parserLine(string s) {
 }
 
 template<class P, class S>
-Matrix<int> *MyClientHandler<P, S>::getMatrix(istream istream) {
+Matrix<int> *MyClientHandler<P, S>::getMatrix(istream &istream) {
     string s = "";
     istream >> s;//todo heg,width of h=w?
     int size = stoi(s);
@@ -84,6 +83,12 @@ Matrix<int> *MyClientHandler<P, S>::getMatrix(istream istream) {
         istream >> s;
     }
     return new Matrix<int>(matrix, size, size, initionX, initionY, goalX, goalY);
+}
+
+template<class P, class S>
+MyClientHandler<P, S>::MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager):ClientHandler<P, S>(solver,
+                                                                                                             cacheManager) {
+
 }
 
 

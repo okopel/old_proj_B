@@ -15,3 +15,7 @@ string StringReverser::solve(string p) {
     return s;
 }
 
+string *StringReverser::solve(string *p) {
+    return new string(this->solve(*p));
+}
+

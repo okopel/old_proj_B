@@ -13,6 +13,8 @@
 using std::string;
 using std::priority_queue;
 using std::list;
+using std::begin;
+using std::end;
 
 template<class T>
 class Bestfs : public Searcher<T> {
@@ -44,7 +46,7 @@ public:
                         break;
                     }
                 }
-                for (auto &vertex:open) {
+                for (auto vertex:open) {
                     if (vertex == state) {
                         isInOpen = true;
                         break;
@@ -52,14 +54,14 @@ public:
                 }
                 if (!isInClose && !isInOpen) {
                     state->setCameFrom(s);
-                    open.push_back(state);
+                    open.push(state);
                 } else {
                     if (state->getCost() > (s->getCost() + 1)) {
                         state->setCost(s->getCost() + 1);
                         state->setCameFrom(s);
                     }
                     if (!isInOpen) {
-                        open.push_back(state);
+                        open.push(state);
                     }
                     //todo Otherwise, adjust its priority in OPEN??
                 }
