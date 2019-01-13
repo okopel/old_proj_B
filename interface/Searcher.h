@@ -23,12 +23,12 @@ public:
 
     }
 
+
     virtual State<T> *search(Searchable<T> *searchable) = 0;
 
 
-    virtual list<State<T> *> *solve(Searchable<T> *p) override {
+    list<State<T> *> *solve(Searchable<T> *p) override {
         State<T> *goal = this->search(p);
-
         list<State<T> *> *path = new list<State<T> *>;
         while (goal != nullptr) {
             path->push_back(goal);

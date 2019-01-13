@@ -28,7 +28,7 @@ private:
 public:
     State(T mystate) : state(mystate) {}
 
-    virtual bool equal(State<T> *other) {
+    virtual bool operator==(State<T> *other) {
         return this->state == other->state;
     }
 

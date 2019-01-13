@@ -18,9 +18,23 @@ using std::end;
 
 template<class T>
 class Bestfs : public Searcher<T> {
-public:
-    Bestfs() : Searcher<T>() {    };
+    bool isInOpen(State<T> state, priority_queue<State<T> *> open) {
+        while (!open.empty()) {
+            auto openStae = open.top();
+            if (state == openStae) {
+                return true;
+            }
+            open.pop();
+        }
+        return false;
+    }
 
+public:
+    Bestfs() : Searcher<T>() {};
+
+    list<State<T> *> *solve(Searchable<T> *p) override {
+        return nullptr;//todo
+    }
 
     virtual State<T> *search(Searchable<T> *searchable) override {
         priority_queue<State<T> *> open;
@@ -31,35 +45,32 @@ public:
             State<T> *s = open.top();
             open.pop();
             closed.push_back(s);
-            if (s->equal(this->goal)) {
+            if (s == this->goal) {
                 return s;
             }
-            vector<State<T> *> possibleSates = searchable->getAllPossibleStates(s);
-            for (State<T> *state:possibleSates) {
+            vector<State<T> *> *possibleSates = searchable->getAllPossibleStates(s);
+            for (int i = 0; i < possibleSates->size(); i++) {
+                //for (auto state:possibleSates) {
                 bool isInOpen = false;
                 bool isInClose = false;
-                for (auto &vertex:closed) {
-                    if (vertex == state) {
+                for (auto vertex:closed) {
+                    if (*vertex == (possibleSates->at(i))) {
                         isInClose = true;
                         break;
                     }
                 }
-                for (auto vertex:open) {
-                    if (vertex == state) {
-                        isInOpen = true;
-                        break;
-                    }
-                }
+                isInOpen = this->isInOpen(*possibleSates->at(i), open);
+
                 if (!isInClose && !isInOpen) {
-                    state->setCameFrom(s);
-                    open.push(state);
+                    possibleSates->at(i)->setCameFrom(s);
+                    open.push(possibleSates->at(i));
                 } else {
-                    if (state->getCost() > (s->getCost() + 1)) {
-                        state->setCost(s->getCost() + 1);
-                        state->setCameFrom(s);
+                    if (possibleSates->at(i)->getCost() > (s->getCost() + 1)) {
+                        possibleSates->at(i)->setCost(s->getCost() + 1);
+                        possibleSates->at(i)->setCameFrom(s);
                     }
                     if (!isInOpen) {
-                        open.push(state);
+                        open.push(possibleSates->at(i));
                     }
                     //todo Otherwise, adjust its priority in OPEN??
                 }

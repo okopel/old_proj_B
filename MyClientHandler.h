@@ -102,7 +102,7 @@ Matrix<Pointm> *MyClientHandler::getMatrix(ifstream &istream) {
         s = "";
         istream >> s;
     }
-    return new Matrix<Pointm>(matrix, size, size, inition, goal);
+    return new Matrix<Pointm>(matrix, size, size, *inition, *goal);
 }
 
 

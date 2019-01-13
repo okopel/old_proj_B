@@ -14,7 +14,11 @@ namespace project {
         * note: the comp doest calculate cost
         */
         bool operator==(Pointm *other) {
-            return (this->x == other->getX() && this->y == other->getY());
+            return ((this->x == other->getX()) && (this->y == other->getY()));
+        }
+
+        bool operator==(Pointm other) {
+            return ((this->x == other.getX()) && (this->y == other.getY()));
         }
 
         int getX() const {

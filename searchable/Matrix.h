@@ -22,7 +22,7 @@ class Matrix : public Searchable<T> {
     State<T> *getStateByIndex(int x, int y);
 
 public:
-    Matrix(State<T> ***s, int height, int width, T *inition, T *goal);
+    Matrix(State<T> ***s, int height, int width, T inition, T goal);
 
     State<T> *getInitialState() override;
 
@@ -87,9 +87,9 @@ State<T> *Matrix<T>::getInitialState() {
 }
 
 template<class T>
-Matrix<T>::Matrix(State<T> ***s, int height, int width, T *inition, T *goal):matrix(s), height(height), width(width) {
-    this->initState = new State<T *>(inition);
-    this->goalState = new State<T *>(goal);
+Matrix<T>::Matrix(State<T> ***s, int height, int width, T inition, T goal):matrix(s), height(height), width(width) {
+    this->initState = new State<T>(inition);
+    this->goalState = new State<T>(goal);
 }
 
 template<class T>
