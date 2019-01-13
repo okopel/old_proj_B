@@ -8,15 +8,14 @@
 using std::string;
 
 //interface
-template<class T>
-class Isearcher : public Solver<Searchable<T>*, list<State<T>*>> {
+template<class P, class T>
+class Isearcher : public Solver<P *, list<State<T> *>> {
 protected:
 
 public:
+    virtual list<State<T> *> *solve(P p) = 0;
 
-    virtual list<State<T>*>* solve(Searchable<T> *p) = 0;
-
-    virtual State<T>* search(Searchable<T> *searchable) = 0;
+    virtual State<T> *search(Searchable<T> *searchable) = 0;
 
     virtual int getNumberOfNodesEvaluated() = 0;
 

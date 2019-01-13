@@ -92,6 +92,7 @@ Matrix<T>::Matrix(State<T> ***s, int height, int width, T inition, T goal):matri
     this->goalState = new State<T>(goal);
 }
 
+
 template<class T>
 State<T> *Matrix<T>::getStateByIndex(int x, int y) {
 //todo

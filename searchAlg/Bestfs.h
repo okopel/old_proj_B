@@ -16,8 +16,8 @@ using std::list;
 using std::begin;
 using std::end;
 
-template<class T>
-class Bestfs : public Searcher<T> {
+template<class P, class T>
+class Bestfs : public Searcher<P, T> {
     bool isInOpen(State<T> state, priority_queue<State<T> *> open) {
         while (!open.empty()) {
             auto openStae = open.top();
@@ -30,13 +30,13 @@ class Bestfs : public Searcher<T> {
     }
 
 public:
-    Bestfs() : Searcher<T>() {
-      //  cout << typeid(T).name() << endl;
+    Bestfs() : Searcher<P, T>() {
+        //  cout << typeid(T).name() << endl;
         //cout << typeid(Searcher<T>).name() << endl;
     };
 
-    list<State<T> *> *solve(Searchable<T> *p) override {
-        return nullptr;//todo
+    int getNumberOfNodesEvaluated() override {
+        return 0;
     }
 
     virtual State<T> *search(Searchable<T> *searchable) override {

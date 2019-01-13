@@ -30,8 +30,14 @@ namespace boot {
 
 
         auto cashMa = new FileCacheManager();
-        auto solver = new Bestfs<Pointm>();
+        auto solverrrr = new Bestfs<Matrix<State<Pointm> *>, Pointm>();
+        cout << typeid(solverrrr).name() << endl;
+        Solver<Matrix<Pointm> *, list<State<Pointm> *>> *solver;
+        Solver<Searchable<Pointm> *, list<State<Pointm> *>> *solver2 = new Bestfs<Matrix<State<Pointm> *>, Pointm>();
+        cout << typeid(solver).name() << endl;
+
         auto mch = new MyClientHandler(solver, cashMa);
+
 
         return 0;
     }

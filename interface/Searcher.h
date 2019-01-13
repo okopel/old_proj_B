@@ -12,21 +12,19 @@
 using std::string;
 
 //abstract
-template<class T>
-class Searcher : public Isearcher<T> {
+template<class P, class T>
+class Searcher : public Isearcher<P, T> {
 protected:
     list<State<T> *> *stateList;
     State<T> *initial;
     State<T> *goal;
 public:
-    Searcher() : Isearcher<T>() {
+    Searcher() : Isearcher<P, T>() {
     }
-
 
     virtual State<T> *search(Searchable<T> *searchable) = 0;
 
-
-    list<State<T> *> *solve(Searchable<T> *p) override {
+    virtual list<State<T> *> *solve(P p) override {
         State<T> *goal = this->search(p);
         list<State<T> *> *path = new list<State<T> *>;
         while (goal != nullptr) {
@@ -35,6 +33,7 @@ public:
         }
         return path;
     }
+
 
     virtual int getNumberOfNodesEvaluated() {
         return 0;
