@@ -6,88 +6,109 @@
 #include "searchable/Matrix.h"
 #include <string>
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include "Point.h"
 
 using std::string;
+using std::ofstream;
+using std::ifstream;
+using project::Pointm;
 
-template<class P, class S>
-class MyClientHandler : public ClientHandler<P, S> {
 
-    vector<int> parserLine(string s);
+class MyClientHandler : public ClientHandler<Matrix<Pointm>, list<State<Pointm> *> *> {
 
-    Matrix<int> *getMatrix(istream &istream);
+    vector<Pointm *> parserLine(int line, string s);
+
+    Pointm *specifigPoint(string line) {
+        string x, y;
+        int delimiter = line.find(",");
+        x = line.substr(0, delimiter);
+        y = line.substr(delimiter + 1, line.size());
+        return new Pointm(stoi(x), stoi(y), 0);
+    }
+
+    Matrix<Pointm> *getMatrix(ifstream &input);
 
 public:
-    MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager);
+    MyClientHandler(Solver<Matrix<Pointm>, list<State<Pointm> *> *> *solver, CacheManager *cacheManager);
 
-    void handleClient(istream istream, ostream ostream) override;
+    void handleClient(string inputFile, string outputFile) override;
 
 
 };
 
+void MyClientHandler::handleClient(string inputFile, string outputFile) {
 
-template<class P, class S>
-void MyClientHandler<P, S>::handleClient(istream istream, ostream ostream) {
-    vector<Matrix<int> *> matrixes;
+    vector<Matrix<Pointm> *> matrixes;
     string s;
-    istream >> s;
+    ifstream input;
+    input.open(inputFile);
+    if (!input.is_open()) {
+        throw "Error in input file";
+    }
+    ofstream output;
+    output.open(outputFile);
+    if (!output.is_open()) {
+        throw "Error in output file";
+    }
+    input >> s;
     int numOfGraphs = stoi(s);
     //load all graphs from inputStream
     for (int graphIndex = 0; graphIndex < numOfGraphs; graphIndex++) {
-        Matrix<int> *m = this->getMatrix(istream);//todo istream!
+        Matrix<Pointm> *m = this->getMatrix(input);
         matrixes.push_back(m);
     }
-    for (Searchable<int>* tmpMatrix:matrixes) {
-        auto ans = this->solver->solve(*tmpMatrix);//todo save the answer
+    for (auto *tmpMatrix:matrixes) {
+        auto ans = this->solver->solve(tmpMatrix);//todo save the answer
     }
 }
 
-template<class P, class S>
-vector<int> MyClientHandler<P, S>::parserLine(string s) {
-    vector<int> vector;
+
+vector<Pointm *> MyClientHandler::parserLine(int line, string s) {
+    vector<Pointm *> vector;
     string buffer;
+    int col = 0;
     for (char c:s) {
         if (c == ',') {
-            vector.push_back(stoi(buffer));
+            vector.push_back(new Pointm(col, line, stoi(buffer)));
+            col++;
             buffer = "";
             continue;
         }
         buffer += c;
     }
-    vector.push_back(stoi(buffer));
+    vector.push_back(new Pointm(col, line, stoi(buffer)));
     return vector;
 }
 
-template<class P, class S>
-Matrix<int> *MyClientHandler<P, S>::getMatrix(istream &istream) {
+Matrix<Pointm> *MyClientHandler::getMatrix(ifstream &istream) {
     string s = "";
     istream >> s;//todo heg,width of h=w?
     int size = stoi(s);
     s = "";
     istream >> s;
-    vector<int> pair = this->parserLine(s);
-    int initionX = pair[0];
-    int initionY = pair[1];
+    auto *inition = this->specifigPoint(s);
     s = "";
     istream >> s;
-    pair = this->parserLine(s);
-    int goalX = pair[0];
-    int goalY = pair[1];
-    State<int> ***matrix = new State<int> **[size];
+    auto *goal = this->specifigPoint(s);
+    auto matrix = new State<Pointm> **[size];
     for (int i = 0; i < size; i++) {//get the graph
-        vector<int> vector = this->parserLine(s);
-        matrix[i] = new State<int> *[size];//initon line
+        auto vector = this->parserLine(i, s);
+        matrix[i] = new State<Pointm> *[size];//initon line
         for (int j = 0; j < size; j++) {//get line of matrix
-            matrix[i][j] = new State<int>(vector[j]);
+            matrix[i][j] = new State<Pointm>(*vector[j]);
         }
         s = "";
         istream >> s;
     }
-    return new Matrix<int>(matrix, size, size, initionX, initionY, goalX, goalY);
+    return new Matrix<Pointm>(matrix, size, size, inition, goal);
 }
 
-template<class P, class S>
-MyClientHandler<P, S>::MyClientHandler(Solver<P, S> *solver, CacheManager *cacheManager):ClientHandler<P, S>(solver,
-                                                                                                             cacheManager) {
+
+MyClientHandler::MyClientHandler(Solver<Matrix<Pointm>, list<State<Pointm> *> *> *solver, CacheManager *cacheManager)
+        : ClientHandler<Matrix<Pointm>, list<State<Pointm> *> *>(solver,
+                                                                 cacheManager) {
 
 }
 

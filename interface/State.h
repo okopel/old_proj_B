@@ -24,6 +24,7 @@ private:
     T state;
     double cost;
     State *cameFrom;
+
 public:
     State(T mystate) : state(mystate) {}
 

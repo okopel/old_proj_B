@@ -19,9 +19,7 @@ using std::end;
 template<class T>
 class Bestfs : public Searcher<T> {
 public:
-    Bestfs() : Searcher<T>() {
-
-    };
+    Bestfs() : Searcher<T>() {    };
 
 
     virtual State<T> *search(Searchable<T> *searchable) override {

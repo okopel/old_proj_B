@@ -23,12 +23,30 @@ using std::istream;
 using std::ofstream;
 using std::ostream;
 namespace boot {
-    int main() {
+    int main(int argc, char **argv) {
+        string input = argv[1];
+        string output = argv[2];
+        auto *solver = new Bestfs<Pointm>();
+        auto *cash = new FileCacheManager();
+        auto *myClientHandler = new MyClientHandler<Matrix<Pointm>, list<State<Pointm> *> *>(solver, cash);
+        auto *myClientHandler2 = new MyClientHandler<Matrix<Pointm>, list<State<Pointm> *> >(solver, cash);
+        auto *myClientHandler3 = new MyClientHandler<Matrix<Pointm>, list<State<Pointm> > *>(solver, cash);
+        auto *myClientHandler4 = new MyClientHandler<Matrix<Pointm>, list<State<Pointm> > >(solver, cash);
+        auto *myClientHandler = new MyClientHandler<Matrix<Pointm>, string>(solver, cash);
+
+
+
 
         auto *stringReve = new StringReverser();
         auto *cash = new FileCacheManager();
         auto *myCli = new MyStringClient(stringReve, cash);
         myCli->x();
+
+        //ClientHandler c;
+        //c.handleClient()
+
+
+
 /*
         using std::string;
         auto *bestfs = new Bestfs<int>();
@@ -59,6 +77,6 @@ namespace boot {
 };
 
 int main(int argc, char **argv) {
-    boot::main();
+    boot::main(argc, argv);
     return 0;
 };

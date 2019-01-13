@@ -26,7 +26,7 @@ public:
         cout << *(this->solver->solve(&s));
     }
 
-    void handleClient(istream inputStream, ostream ostream) override {
+    void handleClient(string in, string out) override {
         string s;
         cout << "enter:" << endl;
         cin >> s;
