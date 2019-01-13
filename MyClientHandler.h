@@ -9,16 +9,17 @@
 #include <iostream>
 #include <fstream>
 #include "Point.h"
+#include "searchAlg/Bestfs.h"
 
 using std::string;
 using std::ofstream;
 using std::ifstream;
 using project::Pointm;
+using std::vector;
 
+class MyClientHandler : public ClientHandler<Matrix<Pointm> *, list<State<Pointm> *>> {
 
-class MyClientHandler : public ClientHandler<Matrix<Pointm>, list<State<Pointm> *> *> {
-
-    vector<Pointm *> parserLine(int line, string s);
+    vector<Pointm> *parserLine(int line, string s);
 
     Pointm *specifigPoint(string line) {
         string x, y;
@@ -31,8 +32,12 @@ class MyClientHandler : public ClientHandler<Matrix<Pointm>, list<State<Pointm> 
     Matrix<Pointm> *getMatrix(ifstream &input);
 
 public:
-    MyClientHandler(Solver<Matrix<Pointm>, list<State<Pointm> *> *> *solver, CacheManager *cacheManager);
+    MyClientHandler(Solver<Matrix<Pointm> *, list<State<Pointm> *>> *solver, CacheManager *cacheManager)
+            : ClientHandler(solver, cacheManager) {
 
+    }
+
+//Solver<Matrix<Pointm>, list<State<Pointm> *> *>
     void handleClient(string inputFile, string outputFile) override;
 
 
@@ -65,20 +70,20 @@ void MyClientHandler::handleClient(string inputFile, string outputFile) {
 }
 
 
-vector<Pointm *> MyClientHandler::parserLine(int line, string s) {
-    vector<Pointm *> vector;
+vector<Pointm> *MyClientHandler::parserLine(int line, string s) {
+    vector<Pointm> *vector = new ::vector<Pointm>;
     string buffer;
     int col = 0;
     for (char c:s) {
         if (c == ',') {
-            vector.push_back(new Pointm(col, line, stoi(buffer)));
+            vector->push_back(Pointm(col, line, stoi(buffer)));
             col++;
             buffer = "";
             continue;
         }
         buffer += c;
     }
-    vector.push_back(new Pointm(col, line, stoi(buffer)));
+    vector->push_back(Pointm(col, line, stoi(buffer)));
     return vector;
 }
 
@@ -97,7 +102,7 @@ Matrix<Pointm> *MyClientHandler::getMatrix(ifstream &istream) {
         auto vector = this->parserLine(i, s);
         matrix[i] = new State<Pointm> *[size];//initon line
         for (int j = 0; j < size; j++) {//get line of matrix
-            matrix[i][j] = new State<Pointm>(*vector[j]);
+            matrix[i][j] = new State<Pointm>(vector->at(j));
         }
         s = "";
         istream >> s;
@@ -106,11 +111,5 @@ Matrix<Pointm> *MyClientHandler::getMatrix(ifstream &istream) {
 }
 
 
-MyClientHandler::MyClientHandler(Solver<Matrix<Pointm>, list<State<Pointm> *> *> *solver, CacheManager *cacheManager)
-        : ClientHandler<Matrix<Pointm>, list<State<Pointm> *> *>(solver,
-                                                                 cacheManager) {
-
-}
-
-
+//
 #endif //PROJB_MYCLIENTHANDLER_H

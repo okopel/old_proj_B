@@ -1,3 +1,7 @@
+
+#ifndef PROJB_POINT_H
+#define PROJB_POINT_H
+
 namespace project {
     class Pointm {
     private:
@@ -14,7 +18,7 @@ namespace project {
         * note: the comp doest calculate cost
         */
         bool operator==(Pointm *other) {
-            return ((this->x == other->getX()) && (this->y == other->getY()));
+            return this->operator==(*other);
         }
 
         bool operator==(Pointm other) {
@@ -46,8 +50,5 @@ namespace project {
         }
     };
 }
-
-#ifndef PROJB_POINT_H
-#define PROJB_POINT_H
 
 #endif //PROJB_POINT_H

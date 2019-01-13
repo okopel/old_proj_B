@@ -1,8 +1,6 @@
 
 #ifndef PROJB_CACHEMANAGER_H
 #define PROJB_CACHEMANAGER_H
-
-
 #include <map>
 #include <string>
 #include <stdio.h>

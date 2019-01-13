@@ -17,7 +17,7 @@
 
 using std::string;
 
-class StringReverser : public Solver<string, string> {
+class StringReverser : public Solver<string *, string> {
 public:
     string solve(string p);
 

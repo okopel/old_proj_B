@@ -30,7 +30,10 @@ class Bestfs : public Searcher<T> {
     }
 
 public:
-    Bestfs() : Searcher<T>() {};
+    Bestfs() : Searcher<T>() {
+      //  cout << typeid(T).name() << endl;
+        //cout << typeid(Searcher<T>).name() << endl;
+    };
 
     list<State<T> *> *solve(Searchable<T> *p) override {
         return nullptr;//todo

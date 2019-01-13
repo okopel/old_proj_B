@@ -23,14 +23,14 @@ public:
         string s;
         cout << "enter:" << endl;
         cin >> s;
-        cout << *(this->solver->solve(&s));
+        cout << *(this->solver->solve(s));
     }
 
     void handleClient(string in, string out) override {
         string s;
         cout << "enter:" << endl;
         cin >> s;
-        cout << *this->solver->solve(&s);
+        cout << *this->solver->solve(s);
     }
 
 };

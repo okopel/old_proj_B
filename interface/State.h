@@ -1,7 +1,6 @@
 #ifndef PROJB_STATE_H
 #define PROJB_STATE_H
 
-
 #include <stdio.h>
 #include "State.h"
 #include <ostream>
@@ -22,8 +21,8 @@ template<class T>
 class State {
 private:
     T state;
-    double cost;
-    State *cameFrom;
+    int cost;
+    State<T> *cameFrom;
 
 public:
     State(T mystate) : state(mystate) {}
@@ -32,19 +31,19 @@ public:
         return this->state == other->state;
     }
 
-    T getState() const {
+    T getT() const {
         return state;
     }
 
-    State *getCameFrom() {
+    State<T> *getCameFrom() {
         return this->cameFrom;
     }
 
-    double getCost() {
+    int getCost() {
         return this->cost;
     }
 
-    void setCost(double cost) {
+    void setCost(int cost) {
         this->cost = cost;
     }
 
@@ -52,19 +51,19 @@ public:
         this->cameFrom = cameFrom;
     }
 
-    bool operator<(const State *other) {
+    bool operator<(const State<T> *other) {
         return this->cost < other->getCost();
     }
 
 
-    friend ostream &operator<<(ostream &out, State<T> t) {
+    friend ostream &operator<<(ostream &out, State<T> *t) {
         return print(out, t);
     }
 };
 
 template<class T>
 ostream &print(ostream &out, const State<T> &t) {
-    return out << t.getState();
+    return out << t.getT();
 
 }
 

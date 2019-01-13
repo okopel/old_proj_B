@@ -14,7 +14,10 @@ using std::string;
 using std::istream;
 using std::ostream;
 
-template<class P, class S>
+#include "../searchAlg/Bestfs.h"
+#include "../Point.h"
+
+template<class P, class S>//problem= matix<state<point>>, s= list<state<point>>
 class ClientHandler {
 protected:
     Solver<P, S> *solver;
@@ -22,7 +25,8 @@ protected:
 
 public:
     ClientHandler(Solver<P, S> *solver, CacheManager *cacheManager) : solver(solver),
-                                                                      cacheManager(cacheManager) {}
+                                                                      cacheManager(
+                                                                              cacheManager) {}
 
     virtual void handleClient(string inputFile, string outputFile) = 0;
 

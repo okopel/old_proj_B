@@ -15,12 +15,11 @@ using std::string;
 template<class T>
 class Searcher : public Isearcher<T> {
 protected:
-    list<State<T> *> stateList;
+    list<State<T> *> *stateList;
     State<T> *initial;
     State<T> *goal;
 public:
     Searcher() : Isearcher<T>() {
-
     }
 
 
